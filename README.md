@@ -1,201 +1,438 @@
-# Student Record Management System (SRMS)
+🎓 Student Record Management System (SRMS)
 
-**Institution:** Academy of Technology  
-**Department:** Computer Science & Engineering  
-**Course Name:** Object Oriented Programming  
-**Course Code:** PCC-CS503  
-**Semester:** 5th Semester (B.Tech)  
-**Academic Session:** 2026–27  
-**Assessment:** CA3 Application-Based Assessment / Mini Project  
-**Faculty Evaluator:** Dr. Krishna Bhowal  
-**Maximum Marks:** 25  
-**Submission Date:** 21 November 2026  
+A Java Swing & MySQL-Based Desktop Application
 
----
+<p align="center">
+<b>Academy of Technology</b><br>
+Department of Computer Science & Engineering
+</p>
 
-## 📋 Project Overview
+<p align="center">
+<img src="https://img.shields.io/badge/Java-21-orange?logo=openjdk" />
+<img src="https://img.shields.io/badge/Java%20Swing-GUI-blue" />
+<img src="https://img.shields.io/badge/MySQL-8.0-blue?logo=mysql" />
+<img src="https://img.shields.io/badge/Maven-Build-red?logo=apachemaven" />
+<img src="https://img.shields.io/badge/Status-Completed-success" />
+</p>
 
-The **Student Record Management System (SRMS)** is an enterprise-grade desktop software application developed using pure Java, Java Swing, and MySQL through JDBC. Conforming strictly to Object-Oriented Programming (OOP) paradigms and a layered architecture, the software empowers academic administrators to register students, perform high-speed searches, manage departmental enrolments, inspect live analytics, and guarantee relational data persistence.
+📚 Academic Information
+Particulars	Details
+Institution	Academy of Technology
+Department	Computer Science & Engineering
+Course Name	Object Oriented Programming
+Course Code	PCC-CS503
+Semester	5th Semester (B.Tech)
+Academic Session	2026–27
+Assessment	CA3 Application-Based Assessment / Mini Project
+Faculty Evaluator	Dr. Krishna Bhowal
+Maximum Marks	25
+Submission Date	21 November 2026
+📋 Project Overview
 
-The system features **Fully Automatic Database Management**: it automatically connects to the local MySQL server, provisions the database (`student_record_db`), creates the relational schema (`students`), builds secondary performance indexes, and validates data integrity—**without requiring manual SQL execution in MySQL Workbench**.
+The Student Record Management System (SRMS) is a desktop-based application developed using Java, Java Swing, JDBC, and MySQL.
 
----
+The application provides an efficient platform for academic administrators to manage student information through a user-friendly graphical interface.
 
-## ✨ Key Upgrades & Highlights
+It supports student registration, record modification, deletion, searching, filtering, authentication, and real-time dashboard analytics.
 
-### 1. Fully Automatic Database Management
-- **Zero Manual SQL Setup:** The application autonomously executes `CREATE DATABASE IF NOT EXISTS student_record_db` and creates the `students` table.
-- **Auto-Indexing:** Automatically creates indexes on `name` and `course` for fast searching.
-- **Integrity Validation:** Verifies schema structure on startup and prevents accidental data deletion or table drops.
-- **Automatic Recovery:** If MySQL is offline, a non-blocking diagnostic dialog appears with a **"Retry Connection"** action that allows instant reconnection once MySQL is started.
+The project follows Object-Oriented Programming principles and a layered software architecture to maintain modularity, code reusability, and maintainability.
 
-### 2. Multi-Criteria Student Management (CRUD)
-- **Add Student:** Validates Roll Number (alphanumeric/hyphen/underscore), Full Name, Department Stream, Academic Session, Email (RFC syntax), Phone (10 digits), and Gender.
-- **View Students:** High-performance `JTable` inside `JScrollPane` with **interactive column sorting**, alternating zebra stripes, custom cell renderers, and an empty-state screen.
-- **Real-Time Quick Filter:** Filter records instantly on every keystroke directly within the table toolbar.
-- **Update Student:** Safe model-index conversion (`convertRowIndexToModel`) ensures sorting never modifies the wrong record. Modal dialog allows editing with full re-validation.
-- **Delete Student:** Detailed confirmation warning displaying student roll number and full name before committing deletion to MySQL.
-- **Search Engine:** Filter by **Roll Number**, **Student Name**, **Course**, or **Global Search (All Fields)** with partial string matching (`LIKE %keyword%`).
+⭐ Key Highlight: Automatic Database Management
 
-### 3. Modern UI/UX Redesign (Java Swing + FlatLaf)
-- **Theme:** Academic Navy Blue (`#1a237e`), Accent Teal (`#00897b`), Clean White Cards, and Crisp Typography.
-- **Split-Panel Sign In:** Institutional branding on the left, masked password with show/hide toggle (`👁`), caps-lock detection, animated shake on error, and a **"Use Demo Credentials"** one-click chip.
-- **Live Connection Badge:** Real-time indicator (`🟢 MySQL Online` / `🟡 MySQL Disconnected`).
-- **Dynamic Executive Dashboard:** Real-time statistics cards (Total Students, Total Courses, Academic Session) dynamically queried from MySQL, plus a *Recently Registered Students* table.
+One of the major features of this application is its automatic database initialization system.
 
----
+On startup, the application can:
 
-## 🏛️ Layered Architecture & OOP Principles
+Connect to the local MySQL server.
+Automatically create the student_record_db database if it does not exist.
+Automatically create the students table.
+Create secondary indexes for faster searching.
+Verify database schema and connectivity.
+Display connection diagnostics if MySQL is unavailable.
+Allow users to retry the database connection.
 
-```
+No manual SQL execution in MySQL Workbench is required for initial database creation.
+
+✨ Features
+1. Automatic Database Management
+Automatic database creation.
+Automatic table initialization.
+Automatic index creation.
+Database connectivity validation.
+MySQL connection retry support.
+Persistent storage using MySQL.
+2. Student Record Management (CRUD)
+Create: Register new student records.
+Read: Display all registered students.
+Update: Edit existing student information.
+Delete: Remove student records with confirmation.
+Duplicate roll number prevention.
+Input validation before database operations.
+3. Advanced Search & Filtering
+
+Search student records using:
+
+Roll Number
+Student Name
+Course / Department
+Global Search
+
+Additional features:
+
+Partial text matching.
+Real-time table filtering.
+Interactive column sorting.
+Efficient database queries using JDBC.
+4. Modern Graphical User Interface
+
+Built using Java Swing with FlatLaf styling.
+
+Academic Navy Blue theme.
+Teal accent colors.
+Clean dashboard layout.
+Interactive navigation sidebar.
+Custom table rendering.
+Alternating row colors.
+Responsive login and registration forms.
+Password visibility toggle.
+Demo credential autofill.
+MySQL connection status indicator.
+5. Executive Dashboard
+
+The dashboard provides real-time statistics:
+
+Total Students
+Total Courses
+Current Academic Session
+Recently Registered Students
+6. Authentication System
+Administrator login.
+Credential verification.
+Session management.
+Demo login functionality.
+🛠️ Technologies Used
+Technology	Purpose
+Java 21	Core application development
+Java Swing	Graphical User Interface
+FlatLaf	Modern UI styling
+MySQL 8.0	Relational database
+JDBC	Database connectivity
+Maven	Dependency management and build
+SQL	Database operations
+JUnit 5	Unit testing
+🏛️ Project Architecture
+
+The application follows a layered architecture to separate user interface, business logic, database operations, and data models.
+
+text
 src/main/java/com/aot/studentmanagement/
-├── Main.java                          # Entry point, FlatLaf styling & DB bootstrapping
+│
+├── Main.java
+│
 ├── config/
-│   └── AppConfig.java                 # Config manager (database.properties, env, system properties)
+│   └── AppConfig.java
+│
 ├── database/
-│   ├── DatabaseConnection.java        # Thread-safe Singleton JDBC connection factory
-│   └── DatabaseInitializer.java       # Automatic DDL runner (CREATE DB, TABLE, INDEXES, VERIFY)
+│   ├── DatabaseConnection.java
+│   └── DatabaseInitializer.java
+│
 ├── dao/
-│   └── StudentDAO.java                # Data Access Object executing parameterized SQL queries
+│   └── StudentDAO.java
+│
 ├── service/
-│   ├── StudentService.java            # Business logic, validation coordination, duplicate checks
-│   └── AuthenticationService.java     # Admin authentication & session management
+│   ├── StudentService.java
+│   └── AuthenticationService.java
+│
 ├── model/
-│   ├── Student.java                   # Encapsulated student domain entity
-│   └── Admin.java                     # Admin entity with credential shielding
+│   ├── Student.java
+│   └── Admin.java
+│
 ├── ui/
-│   ├── LoginFrame.java                # Branded split-panel login window
-│   ├── DashboardFrame.java            # Master navigation frame with sidebar & CardLayout
-│   ├── StudentFormPanel.java          # Add / Update student input form with live validation
-│   └── StudentTablePanel.java         # JTable records browser with live filter & sorting
+│   ├── LoginFrame.java
+│   ├── DashboardFrame.java
+│   ├── StudentFormPanel.java
+│   └── StudentTablePanel.java
+│
 └── util/
-    ├── ValidationUtil.java            # Static regex and constraint validation methods
-    └── PasswordUtil.java              # Password verification utilities
-```
+    ├── ValidationUtil.java
+    └── PasswordUtil.java
 
-### OOP Implementation Highlights
+Architecture Components
+Layer	Responsibility
+UI Layer	Handles graphical interaction
+Service Layer	Implements business logic
+DAO Layer	Executes database operations
+Model Layer	Represents application entities
+Database Layer	Manages connections and initialization
+Utility Layer	Provides validation and helper functions
+🧠 Object-Oriented Programming Concepts
 
-| OOP Principle | Implementation in Project |
-| :--- | :--- |
-| **Encapsulation** | Private attributes in `Student` and `Admin`, exposed via strongly-typed getters/setters with validation. |
-| **Abstraction** | GUI panels interact purely via `StudentService` and `AuthenticationService` APIs, completely shielding UI from SQL syntax. |
-| **Singleton Pattern** | `DatabaseConnection` enforces a single instance managing driver loading and connection pooling. |
-| **Polymorphism** | Overridden `toString()`, `equals()`, and `hashCode()` based on institutional Roll Numbers; overloaded constructors. |
-| **Collections** | Extensive use of `ArrayList<Student>` and `List<String>` for batch data retrieval and error accumulation. |
-| **Exception Handling** | `try-with-resources` ensuring automated closure of `Connection`, `PreparedStatement`, and `ResultSet`; custom handling of `SQLIntegrityConstraintViolationException`. |
+This project demonstrates the core principles of Object-Oriented Programming.
 
----
+OOP Concept	Implementation
+Encapsulation	Private fields in Student and Admin classes
+Abstraction	Service classes hide database implementation details
+Inheritance	Reuse of Java class functionality where applicable
+Polymorphism	Method overriding and constructor overloading
+Singleton Pattern	Centralized database connection management
+Collections	ArrayList and List for record management
+Exception Handling	Try-with-resources and SQL exception handling
+🗄️ Database Design
 
-## 🗄️ Database Design
+Database Name: student_record_db
 
-- **Database Name:** `student_record_db`
-- **Table Name:** `students`
-- **Engine:** `InnoDB` (ACID Compliant)
-- **Charset:** `utf8mb4`
+Table Name: students
 
-| Column | Type | Constraints | Description |
-| :--- | :--- | :--- | :--- |
-| `id` | `INT` | `PRIMARY KEY`, `AUTO_INCREMENT` | Unique internal surrogate identifier. |
-| `roll_number` | `VARCHAR(20)` | `UNIQUE`, `NOT NULL` | Institutional roll identifier. |
-| `name` | `VARCHAR(100)` | `NOT NULL` | Full student legal name. |
-| `course` | `VARCHAR(100)` | `NOT NULL` | Departmental degree stream. |
-| `academic_year` | `VARCHAR(20)` | `NOT NULL` | Enrolled academic session (e.g. 2026-27). |
-| `email` | `VARCHAR(100)` | `NOT NULL` | Valid email address. |
-| `phone` | `VARCHAR(20)` | `NOT NULL` | 10-digit telephone number. |
-| `gender` | `VARCHAR(10)` | `NOT NULL` | Demographic gender (Male/Female/Other). |
-| `created_at` | `TIMESTAMP` | `DEFAULT CURRENT_TIMESTAMP` | Registration timestamp. |
+Storage Engine: InnoDB
 
----
+Character Set: utf8mb4
 
-## 🚀 Easy One-Click Execution (Windows & VS Code)
+Students Table Structure
+Column	Data Type	Constraint
+id	INT	Primary Key, Auto Increment
+roll_number	VARCHAR(20)	Unique, Not Null
+name	VARCHAR(100)	Not Null
+course	VARCHAR(100)	Not Null
+academic_year	VARCHAR(20)	Not Null
+email	VARCHAR(100)	Not Null
+phone	VARCHAR(20)	Not Null
+gender	VARCHAR(10)	Not Null
+created_at	TIMESTAMP	Default Current Timestamp
+Database Configuration
 
-### Option 1: Double-Click Batch File (Fastest)
-Double-click [run.bat](file:///d:/java%20program/Student%20Record%20Management%20System/run.bat) in the project folder, or run in Command Prompt:
-```cmd
-run.bat
-```
+Create a database.properties file in the project root if custom credentials are required.
 
-### Option 2: Windows PowerShell
-```powershell
-.\run.ps1
-```
-
-### Option 3: Direct Executable Fat JAR
-```powershell
-java -jar target/student-record-management-1.0.0.jar
-```
-
-### Option 4: Rebuild the Application
-To recompile all sources and reassemble the standalone 3.3 MB Fat JAR:
-- Using Batch: `build.bat`
-- Using PowerShell: `.\build.ps1`
-- Using Maven: `mvn clean package`
-
----
-
-## 🔑 Administrative Demo Credentials
-
-- **Username:** `admin`
-- **Password:** `admin123`
-*(A quick-fill chip button is also available on the login screen for instant sign-in).*
-
----
-
-## ⚙️ Database Configuration
-
-Configuration is automatically read from `database.properties` in the project root:
-```properties
+properties
 DB_HOST=localhost
 DB_PORT=3306
 DB_NAME=student_record_db
 DB_USER=root
 DB_PASSWORD=your_mysql_password
-```
-If `database.properties` is omitted, the application seamlessly falls back to environment variables (`DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`) or sensible local defaults.
 
----
 
-## 🧪 Automated Testing Verification
+Alternatively, environment variables can be used.
 
-The project includes both **Unit Tests** and **Live Database Integration Tests**:
+Security Note: Never upload your actual database password or private credentials to a public GitHub repository. Use database.properties.example as the configuration template.
 
-### 1. Unit Test Suite (29 Tests)
-Tests encapsulation, validation patterns, authentication logic, and collection filtering:
-```powershell
-# Run using the automated TestRunner
-& "C:\Program Files\Java\jdk-21\bin\java.exe" -cp "target\test-classes;target\classes;C:\Users\sayan\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\sayan\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\sayan\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\sayan\.m2\repository\com\formdev\flatlaf\3.4\flatlaf-3.4.jar;C:\Users\sayan\.m2\repository\com\mysql\mysql-connector-j\8.3.0\mysql-connector-j-8.3.0.jar" com.aot.studentmanagement.TestRunner
-```
-*Result: 29 Total | 29 Passed | 0 Failed (100% Pass Rate).*
+🚀 Installation & Setup
+Prerequisites
 
-### 2. Live Database Integration Test Suite (9 Tests)
-Tests real schema auto-creation, INSERT, SELECT, UPDATE, DELETE, duplicate rejection, and search queries directly against MySQL:
-```powershell
-& "C:\Program Files\Java\jdk-21\bin\java.exe" -cp "target\test-classes;target\classes;C:\Users\sayan\.m2\repository\com\formdev\flatlaf\3.4\flatlaf-3.4.jar;C:\Users\sayan\.m2\repository\com\mysql\mysql-connector-j\8.3.0\mysql-connector-j-8.3.0.jar" com.aot.studentmanagement.DatabaseIntegrationTest
-```
-*Result: 9 Total | 9 Passed | 0 Failed (100% Pass Rate).*
+Install the following software:
 
----
+Java JDK 21 or later.
+MySQL Server 8.0 or compatible version.
+Maven (if not using the Maven Wrapper).
+Git (optional, for cloning the repository).
+Step 1: Clone the Repository
+bash
+git clone https://github.com/sayansarkar3504-cmd/Student-Record-Management-System.git
 
-## 🎓 Faculty Demonstration Checklist
+Step 2: Open the Project
+bash
+cd Student-Record-Management-System
 
-| Step | Action | Expected Behavior |
-| :---: | :--- | :--- |
-| 1 | Launch via `run.bat` | Login screen opens; top right displays `🟢 MySQL Online (student_record_db)`. |
-| 2 | Click "🔑 Use Demo Credentials" | Auto-fills `admin` and `admin123`. |
-| 3 | Click "Sign In" | Authenticates session; Dashboard opens with live KPI metric cards. |
-| 4 | Click "➕ Add Student" | Fill registration form; click "Save Student Record". Student persisted in MySQL. |
-| 5 | Test Duplicate Roll | Enter the same roll number; system displays duplicate roll alert. |
-| 6 | Click "📋 View Students" | `JTable` displays all students. Test header click for sorting; type in quick filter box to search. |
-| 7 | Edit Student | Select a row, click "✏️ Edit Selected" (or double-click row). Update fields and save. |
-| 8 | Delete Student | Select a row, click "🗑️ Delete Selected". Confirm warning prompt. Record removed from MySQL and dashboard counters refresh. |
-| 9 | Click "🔍 Search Records" | Search by Name or Course with partial match; view filtered results. |
-| 10 | Persistence Test | Close the app completely and reopen with `run.bat`. All records remain permanently stored in MySQL! |
 
----
+Open the project folder in VS Code or your preferred Java IDE.
 
-## 📜 Academic Attribution
-Developed for **PCC-CS503 Object Oriented Programming**  
-**Institution:** Academy of Technology  
-**Department:** Computer Science & Engineering  
-**Academic Session:** 2026–27  
-**Faculty Evaluator:** Dr. Krishna Bhowal  
+Step 3: Configure MySQL
+
+Make sure the MySQL server is running.
+
+If necessary, create database.properties in the project root and configure your MySQL username and password.
+
+The application automatically initializes the database and required table.
+
+Step 4: Run the Application
+
+Option 1: Windows Batch File
+
+cmd
+run.bat
+
+
+Option 2: PowerShell
+
+powershell
+.\run.ps1
+
+
+Option 3: Maven
+
+bash
+mvn clean package
+
+
+Then execute:
+
+bash
+java -jar target/student-record-management-1.0.0.jar
+
+
+Option 4: Build Scripts
+
+Windows:
+
+cmd
+build.bat
+
+
+PowerShell:
+
+powershell
+.\build.ps1
+
+🔑 Demo Login Credentials
+Field	Value
+Username	admin
+Password	admin123
+
+The login screen also provides a demo credential autofill option.
+
+Note: Demo credentials are intended for academic demonstration. Change default credentials before any real-world deployment.
+
+🧪 Testing & Verification
+
+The project includes unit testing and database integration testing.
+
+1. Unit Testing
+
+Test Coverage:
+
+Student model validation.
+Roll number validation.
+Email validation.
+Phone number validation.
+Authentication logic.
+Collection filtering.
+Application utility methods.
+
+Reported Test Results:
+
+Metric	Result
+Total Tests	29
+Passed	29
+Failed	0
+Pass Rate	100%
+2. Database Integration Testing
+
+Tests database operations against a live MySQL instance.
+
+Test Scenarios:
+
+Automatic database initialization.
+Table creation.
+Student insertion.
+Student retrieval.
+Student updates.
+Student deletion.
+Duplicate roll number rejection.
+Search functionality.
+Database connectivity.
+
+Reported Test Results:
+
+Metric	Result
+Total Tests	9
+Passed	9
+Failed	0
+Pass Rate	100%
+
+Testing results are based on the reported project test execution. Run the tests in your own environment to reproduce them.
+
+🎓 Faculty Demonstration Guide
+
+The following workflow can be used during the project presentation.
+
+Step	Demonstration	Expected Result
+1	Launch application	Login screen appears
+2	Use demo credentials	Username and password are filled
+3	Sign in	Dashboard opens
+4	Add Student	New student is registered
+5	Test Duplicate Roll	Duplicate warning appears
+6	View Students	Student records appear in JTable
+7	Sort Records	Table sorting works
+8	Edit Student	Selected student information is updated
+9	Delete Student	Confirmation appears before deletion
+10	Search Records	Matching records are displayed
+11	Restart Application	Previously saved records remain available
+📸 Application Screenshots
+
+Screenshots of the application can be added here.
+
+Suggested screenshots:
+
+Login Screen
+Main Dashboard
+Add Student Form
+Student Records Table
+Search and Filtering
+Update Student Dialog
+Delete Confirmation
+MySQL Connection Status
+
+To add screenshots, create a folder named screenshots in the project root.
+
+Example:
+
+text
+screenshots/
+├── login.png
+├── dashboard.png
+├── add-student.png
+├── student-records.png
+└── search.png
+
+
+Then embed them using:
+
+markdown
+![Dashboard](screenshots/dashboard.png)
+
+🔒 Security & Data Integrity
+
+The application incorporates several practices to improve data safety:
+
+Parameterized SQL queries.
+PreparedStatement for database operations.
+Input validation.
+Unique roll number constraints.
+Confirmation before deletion.
+Try-with-resources for JDBC resource management.
+No manual database deletion during initialization.
+
+For production deployment, use stronger password hashing, secure credential storage, and a dedicated database user with restricted permissions.
+
+🔮 Future Enhancements
+
+Possible future improvements include:
+
+Student profile photo upload.
+Export student records to PDF and Excel.
+Attendance management.
+Fee management.
+Role-based administrator permissions.
+Advanced reporting and analytics.
+Backup and restore functionality.
+Cloud database integration.
+📜 Academic Attribution
+
+Developed as part of the PCC-CS503 – Object Oriented Programming Application-Based Assessment / Mini Project.
+
+Institution: Academy of Technology
+Department: Computer Science & Engineering
+Academic Session: 2026–27
+Semester: 5th Semester (B.Tech)
+Faculty Evaluator: Dr. Krishna Bhowal
+
+👨‍💻 Developer
+
+GitHub: @sayansarkar3504-cmd
+
+Project Repository: Student Record Management System
+
+<p align="center">
+<b>Student Record Management System</b><br>
+Built with Java, Swing, JDBC & MySQL
+<br><br>
+⭐ If you find this project useful, consider giving it a star!
+</p>
