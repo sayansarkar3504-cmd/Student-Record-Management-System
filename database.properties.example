@@ -5,7 +5,7 @@ DB_HOST=localhost
 DB_PORT=3306
 DB_NAME=student_record_db
 DB_USER=root
-DB_PASSWORD=Sarkar2015
+DB_PASSWORD=
 
 # Admin Credentials (for demo purposes only)
 ADMIN_USERNAME=admin
